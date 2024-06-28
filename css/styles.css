@@ -8,11 +8,12 @@
 }
 
 .application-header {
+  max-width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0% 4rem;
   background: white;
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.3);
-  position: static;
   top: 0%;
   overflow: hidden;
   position: sticky;
@@ -67,6 +68,16 @@
 
 .search-res-btn {
   margin-left: 1rem;
+}
+
+.logout-div {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.logout-link {
+  text-align: end;
 }
 
 @media screen and (max-width: 768px) {

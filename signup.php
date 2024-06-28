@@ -7,15 +7,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["signup-floatingEmail"];
     $password = $_POST["signup-floatingPassword"];
     $cPassword = $_POST["signup-floatingConfirmPassword"];
-    $exists = false;
-    if ((strlen($username) > 3) && ($password > 8) && (str_contains($email, '@')) && ($password == $cPassword) && $exists == false) {
-        $sql = "INSERT INTO `users` (`username`, `email`, `password`, `dt`) VALUES ('$username', '$email', '$password', current_timestamp());";
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            $showSuccessAlert = true;
-        }
+    // $exists = false;
+    $existsSql = "SELECT * FROM `users` WHERE username = '$username'";
+    $result = mysqli_query($conn, $existsSql);
+    $numExistRows = mysqli_num_rows($result);
+    if ($numExistRows > 0) {
+        echo '<div class="alert alert-warning alert-dismissible fade show showAlert mt-3" role="alert">
+                <strong>Username already exists!</strong> Kindly try different username.
+                the same credentials
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+                </div>';
     } else {
-        $showUnsuccessAlert = true;
+        $exists = false;
+        if ((strlen($username) > 4) && (strlen($password) > 8) && (str_contains($email, '@')) && ($password == $cPassword)) {
+            $sql = "INSERT INTO `users` (`username`, `email`, `password`, `dt`) VALUES ('$username', '$email', '$password', current_timestamp());";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                $showSuccessAlert = true;
+            }
+        } else {
+            $showUnsuccessAlert = true;
+        }
     }
 }
 ?>
@@ -46,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="signup-floatingEmail">Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="signup-floatingEmail" placeholder="name@example.com" name="signup-floatingEmail" />
+                        <input type="email" class="form-control" id="signup-floatingEmail" placeholder="Email address" name="signup-floatingEmail" />
                         <label for="signup-floatingEmail">Email address</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -70,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </section>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
