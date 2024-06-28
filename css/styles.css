@@ -1,0 +1,47 @@
+.card {
+  max-width: 40%;
+  margin: auto;
+  margin-top: 3rem;
+  border: none !important;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.application-header {
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.3);
+}
+
+.nav-logo {
+  max-width: 12rem;
+}
+
+.card-body h5 {
+  margin-bottom: 1rem;
+}
+
+.showAlert {
+  max-width: 40%;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 60%;
+  }
+
+  .showAlert {
+    max-width: 60%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .card {
+    max-width: 80%;
+  }
+
+  .showAlert {
+    max-width: 80%;
+  }
+}
