@@ -10,7 +10,13 @@
 .application-header {
   display: flex;
   justify-content: center;
+  background: white;
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.3);
+  position: static;
+  top: 0%;
+  overflow: hidden;
+  position: sticky;
+  z-index: 1;
 }
 
 .nav-logo {
@@ -24,6 +30,43 @@
 .showAlert {
   max-width: 40%;
   margin: auto;
+}
+
+.rw {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  /* border: 1px solid blue; */
+}
+
+.search-txt {
+  /* border: 1px solid red; */
+  text-align: center;
+}
+
+.search-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+.result-block {
+  /* border: 1px solid yellowgreen; */
+  text-align: center;
+}
+
+.res-row {
+  justify-content: center;
+}
+
+.card-res {
+  max-width: 100%;
+}
+
+.search-res-btn {
+  margin-left: 1rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -43,5 +86,13 @@
 
   .showAlert {
     max-width: 80%;
+  }
+
+  .search-div {
+    flex-direction: column;
+  }
+
+  .search-div button {
+    margin-top: 1rem;
   }
 }

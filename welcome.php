@@ -15,8 +15,42 @@
   </head>
 
   <body>
-    <?php require 'partials/_nav.php'?>
-    <h1>This is welcome</h1>
+    <?php require 'partials/_nav.php' ?>
+
+    <div class="container">
+      <div class="row rw">
+        <div class="col-sm-4 mb-3 mb-sm-0 search-txt">
+          <h3>Search</h3>
+        </div>
+        <div class="col-sm-12 mb-3 mb-sm-0">
+          <form class="search-div" id="search-div">
+            <div class="mt-4">
+              <input
+                type="text"
+                class="form-control"
+                id="coin-symbol"
+                name="coin-symbol"
+                aria-describedby="emailHelp"
+                placeholder="Enter crypto here..."
+                required
+              />
+              <div id="coin-search-help" class="form-text">
+                Explore cryptocoins like BTC, ETH, DOGE and lot more...
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-dark search-res-btn">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="col-12 result-block">
+          <div class="row res-row" id="res-row"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
