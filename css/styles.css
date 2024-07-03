@@ -11,7 +11,7 @@
   max-width: 100vw;
   display: flex;
   justify-content: space-between;
-  padding: 0% 4rem;
+  padding: 0.5rem 4rem;
   background: white;
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.3);
   top: 0%;

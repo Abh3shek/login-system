@@ -3,20 +3,22 @@ $showSuccessAlert = false;
 $showUnsuccessAlert = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include "partials/_dbconnect.php";
-    // $username = $_POST["signup-floatingName"];
     $username = $_POST["login-floatingUsername"];
     $password = $_POST["login-floatingPassword"];
-    // $cPassword = $_POST["signup-floatingConfirmPassword"];
-    // $exists = false;
-    // if ((strlen($username) > 3) && ($password > 8) && (str_contains($email, '@')) && ($password == $cPassword) && $exists == false) {
-    $sql = "SELECT * from users where username = '$username' AND password = '$password'";
+    $sql = "SELECT * from users where username = '$username'";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     if ($num == 1) {
-        session_start();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        header("location: welcome.php");
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row['password'])) {
+            session_start();
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            header("location: welcome.php");
+            exit;
+        } else {
+            $showUnsuccessAlert = true;
+        }
     } else {
         $showUnsuccessAlert = true;
     }
@@ -46,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="/login-system/login.php" method="post">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="login-floatingUsername" placeholder="username" name="login-floatingUsername" require />
-                        <label for="login-floatingEmail">username</label>
+                        <label for="login-floating">username</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="login-floatingPassword" placeholder="Password" name="login-floatingPassword" require />
@@ -58,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </button>
                     <div class="alert text-center" role="alert">
                         *Haven't signed-up yet? Don't worry,
-                        <a href="/login-system/signup.php">Sign In</a>!
+                        <a href="/login-system/signup.php" style="text-decoration: none;">Sign Up</a> !
                     </div>
                 </form>
             </div>

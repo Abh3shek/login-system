@@ -34,8 +34,8 @@ document
                     <div class="card card-res">
                       <div class="card-body" id="card-body">
                         <h5 class="card-title">${name} (${symbol})</h5>
-                        <p class="card-text"> Price: $${price.toFixed(3)}</p>
                         <p>24h Change: ${percentChange.toFixed(3)}%</p>
+                        <p class="card-text"> Price: $${price.toFixed(3)}</p>
                         <p>Rank: ${rank}</p>
                       </div>
                     </div>
@@ -48,7 +48,3 @@ document
         console.error("Error:", error);
       });
   });
-// function logout() {
-//   // Handle logout logic here
-//   window.location.href = "index.html";
-// }

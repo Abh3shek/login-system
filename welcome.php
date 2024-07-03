@@ -22,13 +22,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 
 <body>
   <header class="application-header">
-    <a class="logo" href="/login-system/signup.php"><img src="images/logo-withshadow.png" alt="Company Logo" class="img-fluid nav-logo" /></a>
+    <a class="logo" href="/login-system/signup.php">
+      <img src="images/logo.png" alt="Company Logo" class="img-fluid nav-logo" />
+    </a>
     <div class="logout-div">
       <div class="username-logout">
-        <?php echo $_SESSION['username'] ?>
+        Hi&#128075
+        <code style="background-color: grey; border-radius: .3rem; padding: .2rem .3rem; color: white;">
+          <?php echo $_SESSION['username'] ?>
+        </code>
       </div>
       <div class="logout-link">
-        <a class="logout" href="/login-system/login.php">Logout</a>
+        <a class="logout" href="/login-system/logout.php" style="text-decoration: none;">Logout</a>
       </div>
     </div>
   </header>

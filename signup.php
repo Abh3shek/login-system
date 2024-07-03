@@ -7,11 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["signup-floatingEmail"];
     $password = $_POST["signup-floatingPassword"];
     $cPassword = $_POST["signup-floatingConfirmPassword"];
-    // $exists = false;
-    $existsSql = "SELECT * FROM `users` WHERE username = '$username'";
-    $result = mysqli_query($conn, $existsSql);
-    $numExistRows = mysqli_num_rows($result);
-    if ($numExistRows > 0) {
+    $checkUsername = "SELECT * FROM `users` WHERE username = '$username'";
+    $checkEmail = "SELECT * FROM `users` WHERE email = '$email'";
+    $checkUsernameResult = mysqli_query($conn, $checkUsername);
+    $checkEmailResult = mysqli_query($conn, $checkEmail);
+    $usernameExistRows = mysqli_num_rows($checkUsernameResult);
+    $emailExistRows = mysqli_num_rows($checkEmailResult);
+
+    if ($usernameExistRows > 0) {
         echo '<div class="alert alert-warning alert-dismissible fade show showAlert mt-3" role="alert">
                 <strong>Username already exists!</strong> Kindly try different username.
                 the same credentials
@@ -22,10 +25,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     aria-label="Close"
                 ></button>
                 </div>';
+    } else if ($emailExistRows > 0) {
+        echo '<div class="alert alert-warning alert-dismissible fade show showAlert mt-3" role="alert">
+                <strong>Email exists!</strong> The email is already registered with us try using different email.
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+                </div>';
     } else {
         $exists = false;
         if ((strlen($username) > 4) && (strlen($password) > 8) && (str_contains($email, '@')) && ($password == $cPassword)) {
-            $sql = "INSERT INTO `users` (`username`, `email`, `password`, `dt`) VALUES ('$username', '$email', '$password', current_timestamp());";
+            $encrypt_password = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO `users` (`username`, `email`, `password`, `dt`) VALUES ('$username', '$email', '$encrypt_password', current_timestamp());";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 $showSuccessAlert = true;
@@ -80,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </button>
                     <div class="alert text-center" role="alert">
                         *Already signed-up? Let's
-                        <a href="/login-system/login.php">Log In</a>!
+                        <a href="/login-system/login.php" style="text-decoration: none;">Log In</a> !
                     </div>
                 </form>
             </div>
@@ -88,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
 
     <!-- Bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
