@@ -29,6 +29,23 @@ document
           let percentChange =
             data.data[coinString[i]].quote.USD.percent_change_24h;
           let rank = data.data[coinString[i]].cmc_rank;
+          let vol24hrs = data.data[coinString[i]].quote.USD.volume_24h;
+          let volChng24hrs =
+            data.data[coinString[i]].quote.USD.volume_change_24h;
+          let percChng1hrs =
+            data.data[coinString[i]].quote.USD.percent_change_1h;
+          let percChng7days =
+            data.data[coinString[i]].quote.USD.percent_change_7d;
+          let percChng30days =
+            data.data[coinString[i]].quote.USD.percent_change_30d;
+          let percChng60days =
+            data.data[coinString[i]].quote.USD.percent_change_60d;
+          let percChng90days =
+            data.data[coinString[i]].quote.USD.percent_change_90d;
+          let marketCap = data.data[coinString[i]].quote.USD.market_cap;
+          let fullyDilutedmarketCap =
+            data.data[coinString[i]].quote.USD.fully_diluted_market_cap;
+          let lastUpdated = data.data[coinString[i]].quote.USD.last_updated;
           var output = `
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <div class="card card-res">
@@ -37,6 +54,7 @@ document
                         <p>24h Change: ${percentChange.toFixed(3)}%</p>
                         <p class="card-text"> Price: $${price.toFixed(3)}</p>
                         <p>Rank: ${rank}</p>
+                        <button class="btn btn-outline-dark" onclick="openModal('${name}', '${vol24hrs}', '${volChng24hrs}', '${percChng1hrs}', '${percChng7days}', '${percChng30days}', '${percChng60days}', '${percChng90days}', '${marketCap}', '${fullyDilutedmarketCap}', '${lastUpdated}')">More Info</button>
                       </div>
                     </div>
                   </div>
@@ -48,3 +66,34 @@ document
         console.error("Error:", error);
       });
   });
+
+function openModal(
+  name,
+  vol24hrs,
+  volChng24hrs,
+  percChng1hrs,
+  percChng7days,
+  percChng30days,
+  percChng60days,
+  percChng90days,
+  marketCap,
+  fullyDilutedmarketCap,
+  lastUpdated
+) {
+  const modalBody = document.querySelector("#cryptoModal .modal-body");
+  modalBody.innerHTML = `
+      <h5>${name}</h5>
+      <p>24h Volume: ${vol24hrs}</p>
+      <p>24h Volume Change: ${volChng24hrs}%</p>
+      <p>1h Change: ${percChng1hrs}%</p>
+      <p>7d Change: ${percChng7days}%</p>
+      <p>30d Change: ${percChng30days}%</p>
+      <p>60d Change: ${percChng60days}%</p>
+      <p>90d Change: ${percChng90days}%</p>
+      <p>Market Cap: ${marketCap}</p>
+      <p>Fully Diluted Market Cap: ${fullyDilutedmarketCap}</p>
+      <p>Last Updated: ${lastUpdated}</p>
+    `;
+  const modal = new bootstrap.Modal(document.getElementById("cryptoModal"));
+  modal.show();
+}

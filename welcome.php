@@ -60,6 +60,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
       <div class="col-12 result-block">
         <div class="row res-row" id="res-row"></div>
       </div>
+
+      <!-- Modal Structure -->
+      <div class="modal fade" id="cryptoModal" tabindex="-1" aria-labelledby="cryptoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cryptoModalLabel">Crypto Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Modal content will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
