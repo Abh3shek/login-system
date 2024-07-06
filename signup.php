@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php require 'partials/_alerts.php' ?>
 
     <section class="signup-form">
-        <div class="card px-0 py-2">
+        <div class="auth-card">
             <div class="card-body">
                 <h5 class="card-title text-center">Sign Up</h5>
                 <form action="/login-system/signup.php" method="post">

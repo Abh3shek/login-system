@@ -48,7 +48,7 @@ document
           let lastUpdated = data.data[coinString[i]].quote.USD.last_updated;
           var output = `
                   <div class="col-sm-4 mb-3 mb-sm-0">
-                    <div class="card card-res">
+                    <div class="card-res">
                       <div class="card-body" id="card-body">
                         <h5 class="card-title">${name} (${symbol})</h5>
                         <p>24h Change: ${percentChange.toFixed(3)}%</p>

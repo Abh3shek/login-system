@@ -26,15 +26,24 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
       <img src="images/logo.png" alt="Company Logo" class="img-fluid nav-logo" />
     </a>
     <div class="logout-div">
-      <div class="username-logout">
-        Hi&#128075
-        <code style="background-color: grey; border-radius: .3rem; padding: .2rem .3rem; color: white;">
-          <?php echo $_SESSION['username'] ?>
-        </code>
-      </div>
-      <div class="logout-link">
-        <a class="logout" href="/login-system/logout.php" style="text-decoration: none;">Logout</a>
-      </div>
+      <ul>
+        <li class="align-self-center " style="margin: 0% 1rem;">
+          <div class="link sip-calculator">
+            <a class="text-dark" style="text-decoration: none;" href="/login-system/sip-calculator.php">Sip Calculator</a>
+          </div>
+        </li>
+        <li class="d-flex flex-column" style="margin: 0% 1rem;">
+          <div class="username-logout">
+            Hi&#128075
+            <code style="background-color: grey; border-radius: .3rem; padding: .2rem .3rem; color: white;">
+              <?php echo $_SESSION['username'] ?>
+            </code>
+          </div>
+          <div class="link logout">
+            <a href="/login-system/logout.php" style="text-decoration: none;">Logout</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </header>
 
@@ -57,7 +66,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
           </button>
         </form>
       </div>
-      <div class="col-12 result-block">
+      <div class="col-10 result-block">
         <div class="row res-row" id="res-row"></div>
       </div>
 
